@@ -1,34 +1,34 @@
-function generateNumbers() {
+function chainedPromise() {
     return new Promise((resolve) => {
         setTimeout(() => {
-            const numbers = [1, 2, 3, 4];
-            resolve(numbers);
+            const arr = [1, 2, 3, 4];
+            resolve(arr);
         }, 3000);
     });
 }
 
-function filterOddNumbers(numbers) {
+function filterOdd(arr) {
     return new Promise((resolve) => {
-        const evenNumbers = numbers.filter((num) => num % 2 === 0);
-        resolve(evenNumbers);
+        const evenNumber = arr.filter((num) => num % 2 === 0);
+        resolve(evenNumber);
     });
 }
 
-function multiplyByTwo(numbers) {
-    return new Promise((resolve) => {
-        const multipliedNumbers = numbers.map((num) => num * 2);
-        resolve(multipliedNumbers);
+function multipleNumber(arr) {
+    return new Promise((resolve, reject) => {
+        const multiple = arr.map((num) => num * 2);
+        resolve(multiple);
     });
 }
 
-function updateOutputText(result) {
-    const outputElement = document.getElementById('output');
-    outputElement.textContent = result.join(', ');
+function displayOutput(res) {
+    const output = document.querySelector("#output");
+    output.textContent = res.join(",");
 }
 
-// Chain the promises
-generateNumbers()
-    .then(filterOddNumbers)
-    .then(multiplyByTwo)
-    .then(updateOutputText)
-    .catch((error) => console.error(error));
+// Promise Chaining
+chainedPromise()
+    .then(filterOdd)
+    .then(multipleNumber)
+    .then(displayOutput)
+    .catch((err) => console.log(err));
