@@ -1,63 +1,34 @@
-//your JS code here. If required.
-
-function chaniedPromise(){
-
-	return new Promise((resolve,reject)=>{
-
-		setTimeout(()=>{
-
-			const arr = [1, 2, 3, 4];
-
-			resolve(arr)
-			
-		},3000)
-	})
+function generateNumbers() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            const numbers = [1, 2, 3, 4];
+            resolve(numbers);
+        }, 3000);
+    });
 }
 
-function filterOdd(numbers){
-
-	return new Promise((resolve,reject)=>{
-
-		const evenNumber = numbers.filter((num)=> num % 2 === 0)
-			resolve(number);
-	})
-	
+function filterOddNumbers(numbers) {
+    return new Promise((resolve) => {
+        const evenNumbers = numbers.filter((num) => num % 2 === 0);
+        resolve(evenNumbers);
+    });
 }
 
-
-function multipleNumber(evenNumber){
-
-	return new Promise((resolve ,reject )=>{
-
-		const multiple = evenNumber.map((num)=> num * 2);
-
-		resolve(multiple);
-	})
+function multiplyByTwo(numbers) {
+    return new Promise((resolve) => {
+        const multipliedNumbers = numbers.map((num) => num * 2);
+        resolve(multipliedNumbers);
+    });
 }
 
-
-functuon displayOutput(res){
-
-	const output = document.querySelector("#output");
-
-	output.textContent = res.join(",");
+function updateOutputText(result) {
+    const outputElement = document.getElementById('output');
+    outputElement.textContent = result.join(', ');
 }
 
-// Promise Chaining
-chaniedPromise()
-.then(filterOdd)
-.then(multipleNumber)
-.then(displayOutput)
-.catch((err)=>console.log(err));
-
-
-
-
-
-
-
-
-
-
-
-
+// Chain the promises
+generateNumbers()
+    .then(filterOddNumbers)
+    .then(multiplyByTwo)
+    .then(updateOutputText)
+    .catch((error) => console.error(error));
